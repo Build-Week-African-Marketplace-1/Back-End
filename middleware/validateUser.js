@@ -1,5 +1,5 @@
 function validateUser(req, res, next) {
-    // do your magic!
+    // for better errors
     if(Object.keys(req.body).length===0) {
         console.log(req.body);
         res.status(400).json({
