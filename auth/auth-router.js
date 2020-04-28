@@ -9,12 +9,8 @@ const validateUser = require("../middleware/validateUser");
 
 router.post('/register', validateUser, (req, res) => {
   
-  let user = req.body; // username, password
-
-  
-  const rounds = process.env.HASH_ROUNDS || 14;
-
-  
+  let user = req.body; // username, password  
+  const rounds = process.env.HASH_ROUNDS || 14;  
   const hash = bcrypt.hashSync(user.password, rounds);
 
   
@@ -25,7 +21,7 @@ router.post('/register', validateUser, (req, res) => {
       res.status(201).json(saved);
     })
     .catch(error => {
-      console.log(error);
+      console.log(error.message);
       res.status(500).json({ errorMessage: error.message });
     });
 });
