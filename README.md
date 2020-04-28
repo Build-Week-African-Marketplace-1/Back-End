@@ -2,7 +2,12 @@
 Express Application 
 
 # End-points
-localhost:3000/api/auth/register
-localhost:3000/api/auth/login
-localhost:3000/api/users
-localhost:3000/api/products
+POST    /api/auth/register
+POST    /api/auth/login
+GET     /api/users
+
+POST    /api/products
+GET     /api/products
+GET     /api/products/:id
+PUT     /api/products/:id
+DELETE  /api/products/:id
