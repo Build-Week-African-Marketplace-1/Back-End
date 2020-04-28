@@ -16,19 +16,19 @@ module.exports = {
     seeds: { directory: './data/seeds' }
   },
 
-  // production: {
-  //   client: 'pg',
-  //   connection: process.env.DB_URL,
-  //   pool: {
-  //     min: 2,
-  //     max: 10
-  //   },
-  //   migrations: {
-  //     directory: './data/migrations',
-  //     tableName: 'add_users_table',
-  //     tableName: 'add_products_table'
-  //   },
-  //   seeds: { directory: './data/seeds' }
-  // }
+  production: {
+    client: 'pg',
+    connection: process.env.DB_URL,
+    pool: {
+      min: 2,
+      max: 10
+    },
+    migrations: {
+      directory: './data/migrations',
+      tableName: 'add_users_table',
+      tableName: 'add_products_table'
+    },
+    seeds: { directory: './data/seeds' }
+  }
 
 };
