@@ -5,7 +5,9 @@ const jwt = require("jsonwebtoken");
 const Users = require("../users/users-model.js");
 const secrets = require("../api/secrets.js");
 
-router.post('/register', (req, res) => {
+const validateUser = require("../middleware/validateUser");
+
+router.post('/register', validateUser, (req, res) => {
   
   let user = req.body; // username, password
 
