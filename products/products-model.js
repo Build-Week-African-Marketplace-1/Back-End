@@ -10,15 +10,15 @@ module.exports = {
 };
 
 function find() {
-  return db("products").select("id", "category", "sub_category", "product");
+  return db("products").select("id", "name", "description", "quantity", "price");
 }
 
 function findBy(filter) {
   return db("products").where(filter);
 }
 
-async function add(product) {
-  const [id] = await db("products").insert(product, "id");
+async function add(name) {
+  const [id] = await db("products").insert(name, "id");
 
   return findById(id);
 }
@@ -27,10 +27,10 @@ function findById(id) {
   return db("products").where({ id }).first();
 }
 
-function update(id, product) {
+function update(id, name) {
   return db('products')
     .where('id', Number(id))
-    .update(product);
+    .update(name);
 }
 
 function remove(id) {
