@@ -11,10 +11,11 @@ describe("server", function() {
     it("should register", function() {
       return request(server)
         .post("/api/auth/register")
-        .send({ username: "AAA", password: "abc", email: "" })
+        .send({ username: "AAA", password: "abc", email: "abc@l.com" })
         .then(res => {
           expect(res.body.username).toEqual("AAA");
           expect(res.body.password).toBeTruthy();
+          expect(res.body.email).toBeTruthy();
         });
     });
   });
@@ -23,19 +24,19 @@ describe("server", function() {
     it("should return status 200", async () => {
       const res = await request(server)
         .post("/api/auth/login")
-        .send({ username: "AAA", password: "abc" });
+        .send({ username: "AAA", password: "abc", email: "abc@l.com" });
       expect(res.status).toBe(200);
     });
     it("should return a token", async () => {
       const res = await request(server)
         .post("/api/auth/login")
-        .send({ username: "AAA", password: "abc" });
+        .send({ username: "AAA", password: "abc", email: "abc@l.com" });
       expect(res.body.token).toBeTruthy();
     });
     it("should return json", async () => {
       const res = await request(server)
         .post("/api/auth/login")
-        .send({ username: "AAA", password: "abc" });
+        .send({ username: "AAA", password: "abc", email: "abc@l.com" });
       expect(res.type).toBe("application/json");
     });
   });
