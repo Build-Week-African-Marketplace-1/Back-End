@@ -10,8 +10,8 @@ module.exports = {
     },
     migrations: {
       directory: './data/migrations',
-      tableName: 'add_users_table',
-      tableName: 'add_products_table'
+      // tableName: 'add_users_table',
+      // tableName: 'add_products_table'
     },
     seeds: { directory: './data/seeds' }
   },
