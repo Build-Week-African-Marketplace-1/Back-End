@@ -34,12 +34,13 @@ router.post('/login', (req, res) => {
   Users.findBy({ username })
     .then(([user]) => {
       
+
       if (user && bcrypt.compareSync(password, user.password)) {
         
         const token = generateToken(user);
 
         
-        res.status(200).json({ message: "Welcome!", token });
+        res.status(200).json({ message: "Welcome!", token, id: user.id });
       } else {
         res.status(401).json({ message: "You cannot pass!" });
       }
