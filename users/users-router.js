@@ -2,6 +2,7 @@ const router = require("express").Router();
 
 const Users = require("./users-model.js");
 const Products = require("../products/products-model");
+const bc = require('bcryptjs')
 
 router.get("/", (req, res) => {
     const requestOptions = {
@@ -26,6 +27,40 @@ router.get('/:id', (req, res) => {
     .catch(err => {
       res.status(500).json({ error: 'user not received' })
     })
+})
+
+router.put('/:id', (req, res) => {
+  const id = req.params.id;
+  const changes = req.body;
+  const hash = bc.hashSync(changes.password, 8); 
+  changes.password = hash;
+  const updatedUser = { ...changes, id };
+
+  Users.update(id, changes)
+    .then(editUser => {
+      console.log(updatedUser);
+      res.status(200).json(updatedUser);
+    })
+
+    .catch(error => {
+      console.log(error);
+      res.status(500).json({ error: 'users could not be modified' });
+    })
+
+})
+
+router.delete('/:id', (req, res) => {
+  const id = req.params.id;
+  Users.remove(id)
+    .then(deleted => {
+      console.log(deleted);
+      res.status(200).json({ success: `user was deleted` });
+    })
+      .catch(error => {
+      console.log(error);
+      res.status(500).json({ error: 'user could not be deleted' });
+    })
+
 })
 
 router.get('/:id/products', (req, res) => {

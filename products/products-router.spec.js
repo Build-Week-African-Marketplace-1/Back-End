@@ -11,7 +11,11 @@ describe("server", function() {
     it("should register", function() {
       return request(server)
         .post("/api/products")
+<<<<<<< HEAD
+        .send({ name: "AAA", market_location: "store", description: "abc", quantity: "abc@l.com", price:"10", user_id: 1 })
+=======
         .send({ name: "AAA", market_location: "store", description: "abc", quantity: "abc@l.com", price:"10", user_id: "1" })
+>>>>>>> fab2552780a2e8f781bf5daca8b6f4abbe195922
         .then(res => {
           expect(res.body.name).toEqual("AAA");
           expect(res.body.description).toBeTruthy();
