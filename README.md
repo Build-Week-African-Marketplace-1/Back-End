@@ -5,6 +5,9 @@ Express Application
 POST    /api/auth/register
 POST    /api/auth/login
 GET     /api/users
+GET     /api/users/id
+GET     /api/users/id/products
+POST    /api/users/id/products
 
 POST    /api/products
 GET     /api/products

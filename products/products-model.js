@@ -1,30 +1,47 @@
 const db = require("../data/dbConfig.js");
 
 module.exports = {
-  add,
+  add,  
   find,
   findBy,
   findById,
+  findProductByUser,
   update,
   remove
 };
 
 function find() {
-  return db("products").select("id", "name", "description", "quantity", "price");
+  return db("products").select("id", "name", "market_location", "description", "quantity", "price", "user_id");
 }
 
 function findBy(filter) {
   return db("products").where(filter);
 }
 
-async function add(name) {
-  const [id] = await db("products").insert(name, "id");
-
-  return findById(id);
+function add(product) {
+  return db('products')
+    .insert(product, 'id')
+    .then(ids => {
+      const [id] = ids;
+      return findById(id);
+    });
 }
+
+// async function add(name) {
+//   const [id] = await db("products").insert(name,  "id");
+
+//   return findById(id);
+// }
 
 function findById(id) {
   return db("products").where({ id }).first();
+}
+
+function findProductByUser(userId) {
+  return db('users')
+    .join('products', 'users.id', 'products.user_id')
+    .select('products.id', 'products.name', 'products.market_location', 'products.description', 'products.quantity', 'products.price', 'products.user_id')
+    .where('users.id', userId);
 }
 
 function update(id, name) {

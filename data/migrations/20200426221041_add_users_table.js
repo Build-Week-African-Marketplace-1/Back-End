@@ -14,8 +14,10 @@ exports.up = function(knex) {
         products.increments();    
         products.string('name', 255).notNullable();       
         products.string('description', 255).notNullable();
+        products.string('market_location', 255).notNullable();
         products.string('quantity').notNullable();
         products.string('price', 255).notNullable();
+        products.integer('user_id').unsigned().notNullable().references('id').inTable('users').onDelete('CASCADE').onUpdate('CASCADE');
       });
 };
 

@@ -1,5 +1,5 @@
 exports.up = function(knex) {
-    return knex.schema.dropTable('users', users => {
+    return knex.schema.dropTableIfExists('users', users => {
         users.increments();    
         users
           .string('username', 255)
@@ -8,7 +8,7 @@ exports.up = function(knex) {
         users.string('password', 255).notNullable();
         users.string('email').notNullable();
       })
-      .dropTable('products', products => {
+      .dropTableIfExists('products', products => {
         products.increments();    
         products.string('name', 255).notNullable();       
         products.string('description', 255).notNullable();
