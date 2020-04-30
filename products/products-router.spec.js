@@ -11,7 +11,7 @@ describe("server", function() {
     it("should register", function() {
       return request(server)
         .post("/api/products")
-        .send({ name: "AAA", description: "abc", quantity: "abc@l.com", price:"10" })
+        .send({ name: "AAA", market_location: "store", description: "abc", quantity: "abc@l.com", price:"10", user_id: "1" })
         .then(res => {
           expect(res.body.name).toEqual("AAA");
           expect(res.body.description).toBeTruthy();
